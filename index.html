@@ -9,18 +9,25 @@
 </head>
 <body>
 
-<nav>
+<nav id="site-nav">
   <a class="nav-logo" href="#">Zakhar Fitness Academy</a>
-  <ul class="nav-links">
-    <li><a href="#about">Обо мне</a></li>
-    <li><a href="#services">Услуги</a></li>
-    <li><a href="#advantages">Преимущества</a></li>
-    <li><a href="#reviews">Отзывы</a></li>
-    <li><a href="#booking">Запись</a></li>
-  </ul>
-  <div class="nav-contact">
-    <a class="phone" href="tel:+79306694424">+7 930 669 4424</a>
-    <a class="tg" href="https://t.me/Yakuza4_20" target="_blank">Telegram: @Yakuza4_20</a>
+  <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-menu" id="nav-menu">
+    <ul class="nav-links">
+      <li><a href="#about">Обо мне</a></li>
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#advantages">Преимущества</a></li>
+      <li><a href="#reviews">Отзывы</a></li>
+      <li><a href="#booking">Запись</a></li>
+    </ul>
+    <div class="nav-contact">
+      <a class="phone" href="tel:+79306694424">+7 930 669 4424</a>
+      <a class="tg" href="https://t.me/Yakuza4_20" target="_blank">Telegram: @Yakuza4_20</a>
+    </div>
   </div>
 </nav>
 
@@ -128,28 +135,28 @@
         <span class="service-icon">&#9670;</span>
         <h3 class="service-title">Персональные тренировки</h3>
         <p class="service-desc">Индивидуальные занятия в зале с полным контролем техники, корректировкой и мотивацией на каждом этапе.</p>
-        <span class="service-tag">Записаться &rarr;</span>
+        <a href="#booking" class="service-tag">Записаться &rarr;</a>
       </div>
       <div class="service-card" data-reveal data-reveal-delay="1">
         <span class="service-num">02</span>
         <span class="service-icon">&#9670;</span>
         <h3 class="service-title">Онлайн-сопровождение</h3>
         <p class="service-desc">Тренировки и поддержка через мессенджеры: видеоразборы, обратная связь и ежедневный контроль прогресса.</p>
-        <span class="service-tag">Записаться &rarr;</span>
+        <a href="#booking" class="service-tag">Записаться &rarr;</a>
       </div>
       <div class="service-card" data-reveal data-reveal-delay="2">
         <span class="service-num">03</span>
         <span class="service-icon">&#9670;</span>
         <h3 class="service-title">Программы тренировок</h3>
         <p class="service-desc">Готовая программа под ваши цели: рост мышц, снижение веса, улучшение выносливости или восстановление.</p>
-        <span class="service-tag">Узнать &rarr;</span>
+        <a href="#booking" class="service-tag">Узнать &rarr;</a>
       </div>
       <div class="service-card" data-reveal data-reveal-delay="3">
         <span class="service-num">04</span>
         <span class="service-icon">&#9670;</span>
         <h3 class="service-title">Консультации по питанию</h3>
         <p class="service-desc">Составление плана питания с учётом целей, образа жизни и пищевых предпочтений без жёстких диет.</p>
-        <span class="service-tag">Узнать &rarr;</span>
+        <a href="#booking" class="service-tag">Узнать &rarr;</a>
       </div>
     </div>
   </div>
@@ -271,31 +278,39 @@
     </h2>
     <p class="booking-sub" data-reveal>Оставь заявку — я свяжусь с тобой в течение дня</p>
 
-    <div data-reveal>
+    <form id="booking-form" class="booking-form" action="#" method="POST" novalidate data-reveal data-email="livefiras89@gmail.com">
+      <!-- Honeypot: скрытое поле для защиты от спама -->
+      <div class="honeypot" aria-hidden="true">
+        <label for="website">Не заполняйте это поле</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
       <div class="form-grid">
         <div class="form-field">
-          <input type="text" placeholder="Ваше имя">
+          <input type="text" id="name" name="name" placeholder="Ваше имя" required autocomplete="name">
         </div>
         <div class="form-field">
-          <input type="tel" placeholder="Номер телефона">
+          <input type="tel" id="phone" name="phone" placeholder="Номер телефона" required autocomplete="tel">
         </div>
         <div class="form-field">
-          <input type="text" placeholder="Ваша цель (сброс веса, набор массы...)">
+          <input type="text" id="goal" name="goal" placeholder="Ваша цель (сброс веса, набор массы...)">
         </div>
         <div class="form-field">
-          <select>
-            <option value="" disabled selected>Формат тренировок</option>
-            <option>Персональные тренировки</option>
-            <option>Онлайн-сопровождение</option>
-            <option>Программа тренировок</option>
-            <option>Консультация по питанию</option>
+          <select id="format" name="format">
+            <option value="" selected>Формат тренировок</option>
+            <option value="Персональные тренировки">Персональные тренировки</option>
+            <option value="Онлайн-сопровождение">Онлайн-сопровождение</option>
+            <option value="Программа тренировок">Программа тренировок</option>
+            <option value="Консультация по питанию">Консультация по питанию</option>
           </select>
           <span class="field-icon">▼</span>
         </div>
       </div>
-      <button class="form-submit" type="button">Записаться на тренировку</button>
+
+      <button class="form-submit" type="submit">Записаться на тренировку</button>
+      <p class="form-message" id="form-message" role="status" aria-live="polite" hidden></p>
       <p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
-    </div>
+    </form>
   </div>
 </section>
 
@@ -347,16 +362,34 @@
   document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
 
   /* ── Nav shrink on scroll ── */
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      nav.style.padding = '14px 60px';
-      nav.style.background = 'rgba(10,10,10,0.97)';
-    } else {
-      nav.style.padding = '20px 60px';
-      nav.style.background = 'linear-gradient(180deg, rgba(15,15,15,0.95) 0%, transparent 100%)';
-    }
+  const nav = document.getElementById('site-nav');
+  const navToggle = nav.querySelector('.nav-toggle');
+  const navMenu = nav.querySelector('.nav-menu');
+  const navLinks = nav.querySelectorAll('.nav-menu a');
+
+  function closeNavMenu() {
+    nav.classList.remove('nav-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-no-scroll');
+  }
+
+  navToggle.addEventListener('click', function () {
+    const isOpen = nav.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.classList.toggle('nav-no-scroll', isOpen);
+  });
+
+  navLinks.forEach(function (link) {
+    link.addEventListener('click', closeNavMenu);
+  });
+
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('nav--scrolled', window.scrollY > 80);
   }, { passive: true });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 992) closeNavMenu();
+  });
 
   /* ── Counter animation for stats ── */
   function animateCounter(el, target, suffix) {
@@ -411,27 +444,139 @@
     card.style.transitionDelay = (i * 0.08) + 's';
   });
 
-  /* ── Form submit ── */
-  document.querySelector('.form-submit').addEventListener('click', function() {
-    const inputs = document.querySelectorAll('.form-field input, .form-field select');
-    let filled = true;
-    inputs.forEach(input => {
-      if (!input.value.trim()) {
-        filled = false;
-        input.style.borderColor = 'rgba(255,100,100,0.5)';
-        input.style.animation = 'shake .3s ease';
-        setTimeout(() => {
-          input.style.borderColor = 'var(--border)';
-          input.style.animation = '';
-        }, 2000);
-      }
-    });
-    if (filled) {
-      this.textContent = 'Заявка отправлена! Жди звонка.';
-      this.style.background = '#fff';
-      this.disabled = true;
+  /* ── Form submit (FormSubmit — напрямую из браузера, без PHP) ── */
+  (function () {
+    const form = document.getElementById('booking-form');
+    const messageEl = document.getElementById('form-message');
+    const submitBtn = form.querySelector('.form-submit');
+    const defaultBtnText = submitBtn.textContent;
+    const recipientEmail = form.dataset.email || 'livefiras89@gmail.com';
+    const formEndpoint = 'https://formsubmit.co/ajax/' + encodeURIComponent(recipientEmail);
+
+    function showFieldError(input) {
+      input.classList.add('field-error');
+      input.style.animation = 'shake .3s ease';
+      setTimeout(function () {
+        input.classList.remove('field-error');
+        input.style.animation = '';
+      }, 2000);
     }
-  });
+
+    function showMessage(text, type) {
+      messageEl.textContent = text;
+      messageEl.className = 'form-message form-message--' + type;
+      messageEl.hidden = false;
+    }
+
+    function clearMessage() {
+      messageEl.textContent = '';
+      messageEl.hidden = true;
+      messageEl.className = 'form-message';
+    }
+
+    function buildPayload(name, phone, goal, format) {
+      const goalText = goal || 'Не указана';
+      const formatText = format || 'Не указан';
+      const body = [
+        'Новая заявка с сайта',
+        '',
+        'Имя: ' + name,
+        'Телефон: ' + phone,
+        'Цель: ' + goalText,
+        'Формат тренировок: ' + formatText
+      ].join('\n');
+
+      const payload = new FormData();
+      payload.append('_subject', 'Новая заявка с сайта');
+      payload.append('_captcha', 'false');
+      payload.append('_template', 'table');
+      payload.append('Имя', name);
+      payload.append('Телефон', phone);
+      payload.append('Цель', goalText);
+      payload.append('Формат тренировок', formatText);
+      payload.append('Полный текст', body);
+      return payload;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      clearMessage();
+
+      const honeypot = form.querySelector('[name="website"]');
+      if (honeypot && honeypot.value.trim()) {
+        showMessage('Спасибо! Ваша заявка успешно отправлена.', 'success');
+        form.reset();
+        return;
+      }
+
+      const nameInput = form.querySelector('[name="name"]');
+      const phoneInput = form.querySelector('[name="phone"]');
+      const goalInput = form.querySelector('[name="goal"]');
+      const formatInput = form.querySelector('[name="format"]');
+      let valid = true;
+
+      if (!nameInput.value.trim()) {
+        showFieldError(nameInput);
+        valid = false;
+      }
+      if (!phoneInput.value.trim()) {
+        showFieldError(phoneInput);
+        valid = false;
+      } else if (phoneInput.value.replace(/\D/g, '').length < 10) {
+        showFieldError(phoneInput);
+        showMessage('Введите корректный номер телефона', 'error');
+        valid = false;
+      }
+
+      if (!valid) {
+        if (!messageEl.textContent) {
+          showMessage('Укажите имя и номер телефона', 'error');
+        }
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Отправка...';
+
+      fetch(formEndpoint, {
+        method: 'POST',
+        body: buildPayload(
+          nameInput.value.trim(),
+          phoneInput.value.trim(),
+          goalInput.value.trim(),
+          formatInput.value.trim()
+        ),
+        headers: { Accept: 'application/json' }
+      })
+        .then(function (res) {
+          return res.text().then(function (text) {
+            var data = {};
+            try {
+              data = JSON.parse(text);
+            } catch (err) {
+              throw new Error('invalid_response');
+            }
+            return { ok: res.ok, data: data };
+          });
+        })
+        .then(function (result) {
+          var isSuccess = result.data.success === true || result.data.success === 'true';
+          if (isSuccess) {
+            showMessage('Спасибо! Ваша заявка успешно отправлена.', 'success');
+            form.reset();
+          } else {
+            showMessage(result.data.message || 'Не удалось отправить заявку', 'error');
+          }
+        })
+        .catch(function () {
+          showMessage('Ошибка сети. Проверьте подключение и попробуйте снова.', 'error');
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = defaultBtnText;
+        });
+    });
+  })();
 </script>
 
 <script src="review.js"></script>
